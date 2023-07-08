@@ -308,6 +308,7 @@ public:
     void AddLfgBuffFlag() { m_lfgGroupFlags |= GROUP_LFG_FLAG_APPLY_RANDOM_BUFF; }
     void AddLfgRandomInstanceFlag() { m_lfgGroupFlags |= GROUP_LFG_FLAG_IS_RANDOM_INSTANCE; }
     void AddLfgHeroicFlag() { m_lfgGroupFlags |= GROUP_LFG_FLAG_IS_HEROIC; }
+    //接下来，它使用按位与运算符 & 将变量 m_lfgGroupFlags 与 GROUP_LFG_FLAG_APPLY_RANDOM_BUFF 进行按位与操作。m_lfgGroupFlags 是一个包含一些标志位的整数，用于存储与LFG相关的状态信息。GROUP_LFG_FLAG_APPLY_RANDOM_BUFF 可能是一个预定义的常量或枚举值，表示应用随机增益的标志位。
     bool IsLfgWithBuff() const { return isLFGGroup() && (m_lfgGroupFlags & GROUP_LFG_FLAG_APPLY_RANDOM_BUFF); }
     bool IsLfgRandomInstance() const { return isLFGGroup() && (m_lfgGroupFlags & GROUP_LFG_FLAG_IS_RANDOM_INSTANCE); }
     bool IsLfgHeroic() const { return isLFGGroup() && (m_lfgGroupFlags & GROUP_LFG_FLAG_IS_HEROIC); }
