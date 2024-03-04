@@ -43,12 +43,12 @@
 #include <sstream>
 #endif
 
-#ifdef LIBMARIADB && MARIADB_VERSION_ID >= 100600
-#define MIN_DB_SERVER_VERSION 100300u
-#define MIN_DB_CLIENT_VERSION 30203u
+#ifdef LIBMARIADB && MARIADB_VERSION_ID >= 30103u
+#define MIN_DB_SERVER_VERSION 30103u
+#define MIN_DB_CLIENT_VERSION 30103u
 #else
-#define MIN_DB_SERVER_VERSION 50700u
-#define MIN_DB_CLIENT_VERSION 50700u
+#define MIN_DB_SERVER_VERSION 30103u
+#define MIN_DB_CLIENT_VERSION 30103u
 #endif
 
 constexpr auto MAX_SYNC_CONNECTIONS = 32;
@@ -72,7 +72,7 @@ DatabaseWorkerPool::DatabaseWorkerPool(DatabaseType type) :
 {
     ASSERT(mysql_thread_safe(), "Used MySQL library isn't thread-safe");
 
-#ifndef LIBMARIADB || MARIADB_VERSION_ID < 100600u
+#ifndef LIBMARIADB || MARIADB_VERSION_ID < 30103u
     bool isSupportClientDB = mysql_get_client_version() >= MIN_DB_CLIENT_VERSION;
     bool isSameClientDB = mysql_get_client_version() == MYSQL_VERSION_ID;
 #else // MariaDB 10.6+
