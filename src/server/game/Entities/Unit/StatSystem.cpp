@@ -1370,23 +1370,49 @@ void Guardian::UpdateDamagePhysical(WeaponAttackType attType)
     if (mindamage > maxdamage)
         mindamage = maxdamage;
 
-    //  Pet's base damage changes depending on happiness
+      //读数据库宠物伤害
+    float LrPetDamage75 = 0.75f;
+    float LrPetDamage100 = 1.0f;
+    float LrPetDamage125 = 1.25f;
+    if (QueryResult result = WorldDatabase.Query("SELECT * FROM 1_猎人宠物伤害"))
+    {
+        if (!result) {
+            // 这里的代码会在结果集为空时执行
+        }
+        else {
+             // 这里的代码会在结果集不为空时执行
+            // 可以对结果集进行遍历或其他操作
+            LrPetDamage75 = (*result)[0].Get<float>();
+            LrPetDamage100 = (*result)[1].Get<float>();
+            LrPetDamage125 = (*result)[2].Get<float>();
+
+        }
+
+       // float LrPetDamage = 1.0f;
+    }
+
+
+    //  宠物的基础伤害根据快乐程度而变化
     if (IsHunterPet() && attType == BASE_ATTACK)
     {
         switch (ToPet()->GetHappinessState())
         {
             case HAPPY:
-                // 125% of normal damage
-                mindamage = mindamage * 1.25f;
-                maxdamage = maxdamage * 1.25f;
+                // 造成125%正常伤害
+                //mindamage = mindamage * 1.50f;
+                //maxdamage = maxdamage * 1.50f;
+                mindamage = mindamage * LrPetDamage125;
+                maxdamage = maxdamage * LrPetDamage125;
                 break;
             case CONTENT:
-                // 100% of normal damage, nothing to modify
+                // 造成100%正常伤害，无需修改
                 break;
             case UNHAPPY:
-                // 75% of normal damage
-                mindamage = mindamage * 0.75f;
-                maxdamage = maxdamage * 0.75f;
+                // 造成75%正常伤害
+                //mindamage = mindamage * 0.75f;
+                //maxdamage = maxdamage * 0.75f;
+                mindamage = mindamage * LrPetDamage75;
+                maxdamage = maxdamage * LrPetDamage75;
                 break;
         }
     }

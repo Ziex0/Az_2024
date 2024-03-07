@@ -118,8 +118,8 @@ namespace lfg
             for (GroupReference* itr = group->GetFirstMember(); itr != nullptr; itr = itr->next())
                 if (Player* member = itr->GetSource())
                     player->GetSession()->SendNameQueryOpcode(member->GetGUID());
-
-            if (group->IsLfgWithBuff())
+            //判断是不是有符合给幸运签的条件
+            //if (group->IsLfgWithBuff())
                 player->CastSpell(player, LFG_SPELL_LUCK_OF_THE_DRAW, true);
         }
         else
