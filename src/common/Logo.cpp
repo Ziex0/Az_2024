@@ -27,7 +27,14 @@ void Warhead::Logo::Show(std::string_view applicationName, void(*log)(std::strin
     log(Warhead::StringFormat("{} ({})", GitRevision::GetFullVersion(), applicationName));
     log("<Ctrl-C> to stop");
     log("");
-	log("                                 HEAVEN WOW CORE");
+	log(" 						HEAVEN WOW CORE ");
+	log(" 																 ");
+	log("                                 ██████╗ ██████╗ ██████╗ ███████╗");
+    log("                                ██╔════╝██╔═══██╗██╔══██╗██╔════╝");
+    log("                                ██║     ██║   ██║██████╔╝█████╗");
+    log("                                ██║     ██║   ██║██╔══██╗██╔══╝");
+    log("                                ╚██████╗╚██████╔╝██║  ██║███████╗");
+    log("                                 ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝\n");
     log("");
 
     if (logExtraInfo)
