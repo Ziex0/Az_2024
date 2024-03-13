@@ -30,7 +30,7 @@ if(SCRIPTS)
   list(FIND SCRIPTS_AVAILABLE_OPTIONS "${SCRIPTS}" SCRIPTS_INDEX)
   if(${SCRIPTS_INDEX} EQUAL -1)
     message(FATAL_ERROR "The value (${SCRIPTS}) of your SCRIPTS variable is invalid! "
-                        "Allowed values are: ${SCRIPTS_AVAILABLE_OPTIONS}. Set static")
+                        "Allowed values are: ${SCRIPTS_AVAILABLE_OPTIONS}. Set default")
   endif()
 endif()
 
